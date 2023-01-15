@@ -23,7 +23,18 @@ def main():
                                         (WINDOW_WIDTH, WINDOW_HEIGHT))
 
     # TODO: add a post here
+    post_list = []
     post = Post("Images//noa_kirel.jpg", "Israel", "hiii")
+    post2 = Post("Images//ronaldo.jpg", "Israel", "hiii")
+    post3 = Post("Images//noa_kirel.jpg", "Israel", "hiii")
+    post4 = Post("Images//ronaldo.jpg", "Israel", "hiii")
+    post_list.append(post)
+    post_list.append(post2)
+    post_list.append(post3)
+    post_list.append(post4)
+    current_index = 0
+    current_post = post_list[current_index]
+
     print(post.user_name)
     running = True
 
@@ -34,17 +45,24 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = event.pos
+                mouse_pos = event
+                if mouse_in_button(click_post_button, mouse_pos):
+                    if current_index == len(post_list) - 1:
+                        current_index = 0
+                    else:
+                        current_index += 1
+                    current_post = post_list[current_index]
+
                 if mouse_in_button(like_button, mouse_pos):
-                    post.add_like()
+                    current_post.add_like()
                 elif mouse_in_button(comment_button, mouse_pos):
                     comment = read_comment_from_user()  # Comment.user,,,(comment)
-                    post.add_comment(comment)
+                    current_post.add_comment(comment)
         # Display the background, presented Image, likes, comments, tags and
         # location(on the Image)
         screen.fill(BLACK)
         screen.blit(background, (0, 0))
-        post.display()
+        current_post.display()
 #        test_comment()
         # Update display - without input update everything
         pygame.display.update()
