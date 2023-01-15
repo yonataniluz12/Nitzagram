@@ -45,7 +45,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = event
+                mouse_pos = event.pos
                 if mouse_in_button(click_post_button, mouse_pos):
                     if current_index == len(post_list) - 1:
                         current_index = 0
