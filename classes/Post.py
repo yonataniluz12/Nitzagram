@@ -3,16 +3,15 @@ from constants import *
 from helpers import screen
 from classes.Comment import Comment
 
+
 class Post:
     """
     A class used to represent post on Nitzagram
     """
     user_name = "yonatan_iluz"
-    def __init__(self, image_src, location, description):
-        #TODO: write me!
 
-
-        self.image_src = image_src
+    def __init__(self, location, description):
+        # TODO: write me!
 
         self.location = location
         self.description = description
@@ -27,27 +26,25 @@ class Post:
         self.display_comments()
 
     def display_content(self):
-        img = pygame.image.load(self.image_src)
-        img = pygame.transform.scale(img,(POST_WIDTH, POST_HEIGHT))
-        screen.blit(img, (POST_X_POS, POST_Y_POS))
+        pass
 
     def display_header(self):
-        font = pygame.font.SysFont("chalkduster.ttf",15)
+        font = pygame.font.SysFont("chalkduster.ttf", 15)
         text = font.render(self.location, True, LIGHT_GRAY)
-        screen.blit(text,[LOCATION_TEXT_X_POS,LOCATION_TEXT_Y_POS])
+        screen.blit(text, [LOCATION_TEXT_X_POS, LOCATION_TEXT_Y_POS])
 
         font_name = pygame.font.SysFont("chalkduster.ttf", 15)
         text_name = font_name.render(self.user_name, True, GREY)
         screen.blit(text_name, [USER_NAME_X_POS, USER_NAME_Y_POS])
 
-        font_description= pygame.font.SysFont("chalkduster.ttf",15)
-        text_description= font_description.render(self.description, True, GREY)
-        screen.blit(text_description,[DESCRIPTION_TEXT_X_POS,DESCRIPTION_TEXT_Y_POS])
+        font_description = pygame.font.SysFont("chalkduster.ttf", 15)
+        text_description = font_description.render(self.description, True, GREY)
+        screen.blit(text_description, [DESCRIPTION_TEXT_X_POS, DESCRIPTION_TEXT_Y_POS])
 
     def display_likes(self):
-        font = pygame.font.SysFont("chalkduster.ttf",15)
-        text = font.render(f"Liked by {self.likes_counter} users", True,BLACK)
-        screen.blit(text,[LIKE_TEXT_X_POS,LIKE_TEXT_Y_POS])
+        font = pygame.font.SysFont("chalkduster.ttf", 15)
+        text = font.render(f"Liked by {self.likes_counter} users", True, BLACK)
+        screen.blit(text, [LIKE_TEXT_X_POS, LIKE_TEXT_Y_POS])
 
     def display_comments(self):
         """

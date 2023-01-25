@@ -1,11 +1,12 @@
 import pygame
 from helpers import screen
 from constants import WINDOW_WIDTH, WINDOW_HEIGHT, BLACK
-from classes.Post import *
+from classes.ImagePost import ImagePost
 from test_methods import test_comment
 from buttons import *
 from helpers import *
 from classes.Comment import *
+from classes.TextPost import *
 
 
 def main():
@@ -24,18 +25,20 @@ def main():
 
     # TODO: add a post here
     post_list = []
-    post = Post("Images//noa_kirel.jpg", "Israel", "hiii")
-    post2 = Post("Images//ronaldo.jpg", "Israel", "hiii")
-    post3 = Post("Images//noa_kirel.jpg", "Israel", "hiii")
-    post4 = Post("Images//ronaldo.jpg", "Israel", "hiii")
+    text_post = TextPost((100,100,100),"Ianm the ",(1,1,1),"israel","hiiiii")
+    post = ImagePost("Images//noa_kirel.jpg", "Israel", "hiii")
+    post2 = ImagePost("Images//ronaldo.jpg", "Israel", "hiii")
+    post3 = ImagePost("Images//noa_kirel.jpg", "Israel", "hiii")
+    post4 = ImagePost("Images//ronaldo.jpg", "Israel", "hiii")
     post_list.append(post)
     post_list.append(post2)
     post_list.append(post3)
     post_list.append(post4)
+    post_list.append(text_post)
     current_index = 0
     current_post = post_list[current_index]
 
-    print(post.user_name)
+
     running = True
 
     while running:
