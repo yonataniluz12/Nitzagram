@@ -9,6 +9,7 @@ from classes.Comment import *
 from classes.TextPost import *
 from classes.Filter import *
 
+DirtyWords = ["damn", "fack U", "you are piece of shit","shit","nigher"]
 
 
 def main():
@@ -27,9 +28,9 @@ def main():
 
     # TODO: add a post here
     post_list = []
-    text_post = TextPost((100,100,100),"Ianm the ",(1,1,1),"israel","hiiiii")
+    text_post = TextPost((100, 100, 100), "Ianm the ", (1, 1, 1), "israel", "hiiiii")
     purple_filter = Filter((30, 12, 121), 80)
-    post = ImagePost("Images//noa_kirel.jpg", "Israel", "hiii",purple_filter)
+    post = ImagePost("Images//noa_kirel.jpg", "Israel", "hiii", purple_filter)
     post2 = ImagePost("Images//ronaldo.jpg", "Israel", "hiii")
     post3 = ImagePost("Images//noa_kirel.jpg", "Israel", "hiii")
     post4 = ImagePost("Images//ronaldo.jpg", "Israel", "hiii")
@@ -40,7 +41,6 @@ def main():
     post_list.append(text_post)
     current_index = 0
     current_post = post_list[current_index]
-
 
     running = True
 
@@ -63,13 +63,14 @@ def main():
                     current_post.add_like()
                 elif mouse_in_button(comment_button, mouse_pos):
                     comment = read_comment_from_user()  # Comment.user,,,(comment)
+                    comment = censor(comment,DirtyWords)
                     current_post.add_comment(comment)
         # Display the background, presented Image, likes, comments, tags and
         # location(on the Image)
         screen.fill(BLACK)
         screen.blit(background, (0, 0))
         current_post.display()
-#        test_comment()
+        #        test_comment()
         # Update display - without input update everything
         pygame.display.update()
 
@@ -87,3 +88,11 @@ def mouse_in_button(button, mouse_pos):
     if button.x_pos + button.width > mouse_pos[0] > button.x_pos and \
             button.y_pos < mouse_pos[1] < button.y_pos + button.height:
         return True
+
+
+def censor(comment, DirtyWords):
+    for i in DirtyWords:
+        x = comment.find(i)
+        if x in comment:
+            comment = comment.replace(i, "*" * len(i))
+    return comment

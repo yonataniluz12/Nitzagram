@@ -1,6 +1,6 @@
 from classes.Post import *
 from helpers import *
-
+import pywhatkit
 
 class TextPost(Post):
     def __init__(self, color_text, text, background_color, location, description):
@@ -19,5 +19,10 @@ class TextPost(Post):
             center = center_text(len(self.textArray), text, i)
             screen.blit(text, (center[0], center[1]))
 
+    def share(self,phnum):
+        if "+972" in phnum:
+            pywhatkit.sendwhatmsg_instantly(phnum,"text post"+self.text + "\n" + "location:"
+                                            + self.location + "\n"
+                                            +"description:" + self.description, wait_time = 15)
 
 
