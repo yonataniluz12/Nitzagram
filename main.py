@@ -7,6 +7,8 @@ from buttons import *
 from helpers import *
 from classes.Comment import *
 from classes.TextPost import *
+from classes.Filter import *
+
 
 
 def main():
@@ -26,7 +28,8 @@ def main():
     # TODO: add a post here
     post_list = []
     text_post = TextPost((100,100,100),"Ianm the ",(1,1,1),"israel","hiiiii")
-    post = ImagePost("Images//noa_kirel.jpg", "Israel", "hiii")
+    purple_filter = Filter((30, 12, 121), 80)
+    post = ImagePost("Images//noa_kirel.jpg", "Israel", "hiii",purple_filter)
     post2 = ImagePost("Images//ronaldo.jpg", "Israel", "hiii")
     post3 = ImagePost("Images//noa_kirel.jpg", "Israel", "hiii")
     post4 = ImagePost("Images//ronaldo.jpg", "Israel", "hiii")
